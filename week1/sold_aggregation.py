@@ -62,8 +62,8 @@ print("\n=== PropertyType AFTER filter ===")
 print(sold_res['PropertyType'].value_counts())
 
 # save output
-sold_res.to_csv("sold_combined_residential.csv", index=False)
-print("\nSaved: sold_combined_residential.csv")
+sold_res.to_csv("../output/sold_combined.csv", index=False)
+print("\nSaved: sold_combined.csv")
 
 
 

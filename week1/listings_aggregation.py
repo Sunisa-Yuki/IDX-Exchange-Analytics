@@ -1,12 +1,19 @@
 import glob
 import pandas as pd
+import os
+print(os.listdir("../raw"))
 
 # Week 1 Aggregation Script (Listings)
 # Combines monthly listing datasets (Jan 2024 → Mar 2026)
 # Validates row counts and filters Residential properties
 
+
+
 # Step 1: Verify files
-files = sorted(glob.glob("../raw/CRMLSListing*.csv"))
+# files = sorted(glob.glob("../raw/CRMLSListing*.csv"))
+print(os.listdir("raw"))
+files = sorted(glob.glob("raw/*Listing*.csv"))
+
 print("Number of files:", len(files))
 print("First 5 files:", files[:5])
 
@@ -20,6 +27,8 @@ print("Rows in first file:", len(df))
 dfs = []
 total_rows = 0
 
+if len(files) == 0:
+    raise ValueError("No files found. Check your raw folder or filename pattern.")
 print("\n=== Individual File Row Counts ===")
 
 for file in files:
@@ -57,8 +66,8 @@ print("\n=== PropertyType AFTER filter ===")
 print(listings_res['PropertyType'].value_counts())
 
 # Step 9: Save output
-listings_res.to_csv("listings_combined_residential.csv", index=False)
+listings_res.to_csv("../output/listings_combined.csv", index=False)
+print("\nSaved: listings_combined.csv")
 
-print("\nSaved: listings_combined_residential.csv")
 
 
